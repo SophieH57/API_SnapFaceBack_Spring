@@ -17,16 +17,16 @@ public class SnapService {
 	@Autowired
 	private SnapRepository snapRepository;
 	
-	public Optional<Snap> getSnap(final Long idSnap){
-		return snapRepository.findById(idSnap);
+	public Optional<Snap> getSnap(final Long id_snap){
+		return snapRepository.findById(id_snap);
 	}
 	
 	public Iterable<Snap> getSnaps(){
 		return snapRepository.findAll();
 	}
 	
-	public void deleteSnap(final Long idSnap) {
-		snapRepository.deleteById(idSnap);
+	public void deleteSnap(final Long id_snap) {
+		snapRepository.deleteById(id_snap);
 	}
 	
 	public Snap saveSnap(Snap newSnap) {

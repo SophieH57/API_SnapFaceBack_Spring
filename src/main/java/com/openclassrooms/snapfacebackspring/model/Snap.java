@@ -16,7 +16,7 @@ public class Snap {
 
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idSnap;
+	private Long id_snap;
 	
 	private String title;
 	
@@ -25,6 +25,11 @@ public class Snap {
 	private String location;
 	
 	private String utilisateur;
+
+	
+	public Long getId_snap() {
+		return id_snap;
+	}
 
 	public String getTitle() {
 		return title;

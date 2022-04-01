@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,15 +25,17 @@ public class SnapController {
 	private SnapService snapService;
 	
 	//Création nouveau Snap
+	@CrossOrigin
 	@PostMapping("/addfacesnap")
 	public Snap createSnap(@RequestBody Snap newSnap) {
 		return snapService.saveSnap(newSnap);
 	}
 	
 	//Afficher un snap récupéré par son id
-	@GetMapping("/facesnaps/{idSnap}")
-	public Snap getSnap(@PathVariable("idSnap") final Long idSnap) {
-		Optional<Snap> snap = snapService.getSnap(idSnap);
+	@CrossOrigin
+	@GetMapping("/facesnaps/{id_snap}")
+	public Snap getSnap(@PathVariable("id_snap") final Long id_snap) {
+		Optional<Snap> snap = snapService.getSnap(id_snap);
 		if (snap.isPresent()) {
 			return snap.get();
 		} else {
@@ -41,15 +44,17 @@ public class SnapController {
 	}
 	
 	//Afficher tous les snaps
+	@CrossOrigin
 	@GetMapping("/facesnaps")
 	public Iterable<Snap> getSnaps(){
 		return snapService.getSnaps();
 	}
 	
 	//Modifier un snap
-	@PutMapping("/facesnaps/{idSnap}")
-	public Snap updateSnap(@PathVariable("idSnap") final Long idSnap, @RequestBody Snap snap) {
-		Optional<Snap> s = snapService.getSnap(idSnap);
+	@CrossOrigin
+	@PutMapping("/facesnaps/{id_snap}")
+	public Snap updateSnap(@PathVariable("id_snap") final Long id_snap, @RequestBody Snap snap) {
+		Optional<Snap> s = snapService.getSnap(id_snap);
 		if (s.isPresent()) {
 			Snap currentSnap = s.get();
 			
@@ -86,8 +91,9 @@ public class SnapController {
 	}
 		
 	//Supprimer un snap
-		@DeleteMapping("/facesnaps/{idSnap}")
-		public void deleteSnap(@PathVariable("idSnap") final Long idSnap) {
-			snapService.deleteSnap(idSnap);	
+	@CrossOrigin
+		@DeleteMapping("/facesnaps/{id_snap}")
+		public void deleteSnap(@PathVariable("id_snap") final Long id_snap) {
+			snapService.deleteSnap(id_snap);	
 	}
 }
